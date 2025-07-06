@@ -1,0 +1,548 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		716CB37E2E1ACE1300574BB8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 716CB35E2E1ACE1000574BB8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 716CB3652E1ACE1000574BB8;
+			remoteInfo = PixelDodge;
+		};
+		716CB3882E1ACE1300574BB8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 716CB35E2E1ACE1000574BB8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 716CB3652E1ACE1000574BB8;
+			remoteInfo = PixelDodge;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		716CB3662E1ACE1000574BB8 /* PixelDodge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PixelDodge.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		716CB37D2E1ACE1300574BB8 /* PixelDodgeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PixelDodgeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		716CB3872E1ACE1300574BB8 /* PixelDodgeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PixelDodgeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		716CB3682E1ACE1000574BB8 /* PixelDodge */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = PixelDodge;
+			sourceTree = "<group>";
+		};
+		716CB3802E1ACE1300574BB8 /* PixelDodgeTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = PixelDodgeTests;
+			sourceTree = "<group>";
+		};
+		716CB38A2E1ACE1300574BB8 /* PixelDodgeUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = PixelDodgeUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		716CB3632E1ACE1000574BB8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		716CB37A2E1ACE1300574BB8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		716CB3842E1ACE1300574BB8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		716CB35D2E1ACE1000574BB8 = {
+			isa = PBXGroup;
+			children = (
+				716CB3682E1ACE1000574BB8 /* PixelDodge */,
+				716CB3802E1ACE1300574BB8 /* PixelDodgeTests */,
+				716CB38A2E1ACE1300574BB8 /* PixelDodgeUITests */,
+				716CB3672E1ACE1000574BB8 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		716CB3672E1ACE1000574BB8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				716CB3662E1ACE1000574BB8 /* PixelDodge.app */,
+				716CB37D2E1ACE1300574BB8 /* PixelDodgeTests.xctest */,
+				716CB3872E1ACE1300574BB8 /* PixelDodgeUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		716CB3652E1ACE1000574BB8 /* PixelDodge */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 716CB3912E1ACE1300574BB8 /* Build configuration list for PBXNativeTarget "PixelDodge" */;
+			buildPhases = (
+				716CB3622E1ACE1000574BB8 /* Sources */,
+				716CB3632E1ACE1000574BB8 /* Frameworks */,
+				716CB3642E1ACE1000574BB8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				716CB3682E1ACE1000574BB8 /* PixelDodge */,
+			);
+			name = PixelDodge;
+			packageProductDependencies = (
+			);
+			productName = PixelDodge;
+			productReference = 716CB3662E1ACE1000574BB8 /* PixelDodge.app */;
+			productType = "com.apple.product-type.application";
+		};
+		716CB37C2E1ACE1300574BB8 /* PixelDodgeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 716CB3942E1ACE1300574BB8 /* Build configuration list for PBXNativeTarget "PixelDodgeTests" */;
+			buildPhases = (
+				716CB3792E1ACE1300574BB8 /* Sources */,
+				716CB37A2E1ACE1300574BB8 /* Frameworks */,
+				716CB37B2E1ACE1300574BB8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				716CB37F2E1ACE1300574BB8 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				716CB3802E1ACE1300574BB8 /* PixelDodgeTests */,
+			);
+			name = PixelDodgeTests;
+			packageProductDependencies = (
+			);
+			productName = PixelDodgeTests;
+			productReference = 716CB37D2E1ACE1300574BB8 /* PixelDodgeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		716CB3862E1ACE1300574BB8 /* PixelDodgeUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 716CB3972E1ACE1300574BB8 /* Build configuration list for PBXNativeTarget "PixelDodgeUITests" */;
+			buildPhases = (
+				716CB3832E1ACE1300574BB8 /* Sources */,
+				716CB3842E1ACE1300574BB8 /* Frameworks */,
+				716CB3852E1ACE1300574BB8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				716CB3892E1ACE1300574BB8 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				716CB38A2E1ACE1300574BB8 /* PixelDodgeUITests */,
+			);
+			name = PixelDodgeUITests;
+			packageProductDependencies = (
+			);
+			productName = PixelDodgeUITests;
+			productReference = 716CB3872E1ACE1300574BB8 /* PixelDodgeUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		716CB35E2E1ACE1000574BB8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1640;
+				LastUpgradeCheck = 1640;
+				TargetAttributes = {
+					716CB3652E1ACE1000574BB8 = {
+						CreatedOnToolsVersion = 16.4;
+					};
+					716CB37C2E1ACE1300574BB8 = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = 716CB3652E1ACE1000574BB8;
+					};
+					716CB3862E1ACE1300574BB8 = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = 716CB3652E1ACE1000574BB8;
+					};
+				};
+			};
+			buildConfigurationList = 716CB3612E1ACE1000574BB8 /* Build configuration list for PBXProject "PixelDodge" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 716CB35D2E1ACE1000574BB8;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 716CB3672E1ACE1000574BB8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				716CB3652E1ACE1000574BB8 /* PixelDodge */,
+				716CB37C2E1ACE1300574BB8 /* PixelDodgeTests */,
+				716CB3862E1ACE1300574BB8 /* PixelDodgeUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		716CB3642E1ACE1000574BB8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		716CB37B2E1ACE1300574BB8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		716CB3852E1ACE1300574BB8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		716CB3622E1ACE1000574BB8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		716CB3792E1ACE1300574BB8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		716CB3832E1ACE1300574BB8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		716CB37F2E1ACE1300574BB8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 716CB3652E1ACE1000574BB8 /* PixelDodge */;
+			targetProxy = 716CB37E2E1ACE1300574BB8 /* PBXContainerItemProxy */;
+		};
+		716CB3892E1ACE1300574BB8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 716CB3652E1ACE1000574BB8 /* PixelDodge */;
+			targetProxy = 716CB3882E1ACE1300574BB8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		716CB38F2E1ACE1300574BB8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		716CB3902E1ACE1300574BB8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		716CB3922E1ACE1300574BB8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = PixelDodge/PixelDodge.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = kirsch.PixelDodge;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		716CB3932E1ACE1300574BB8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = PixelDodge/PixelDodge.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = kirsch.PixelDodge;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		716CB3952E1ACE1300574BB8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = kirsch.PixelDodgeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PixelDodge.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/PixelDodge";
+			};
+			name = Debug;
+		};
+		716CB3962E1ACE1300574BB8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = kirsch.PixelDodgeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PixelDodge.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/PixelDodge";
+			};
+			name = Release;
+		};
+		716CB3982E1ACE1300574BB8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = kirsch.PixelDodgeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = PixelDodge;
+			};
+			name = Debug;
+		};
+		716CB3992E1ACE1300574BB8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = kirsch.PixelDodgeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = PixelDodge;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		716CB3612E1ACE1000574BB8 /* Build configuration list for PBXProject "PixelDodge" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				716CB38F2E1ACE1300574BB8 /* Debug */,
+				716CB3902E1ACE1300574BB8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		716CB3912E1ACE1300574BB8 /* Build configuration list for PBXNativeTarget "PixelDodge" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				716CB3922E1ACE1300574BB8 /* Debug */,
+				716CB3932E1ACE1300574BB8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		716CB3942E1ACE1300574BB8 /* Build configuration list for PBXNativeTarget "PixelDodgeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				716CB3952E1ACE1300574BB8 /* Debug */,
+				716CB3962E1ACE1300574BB8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		716CB3972E1ACE1300574BB8 /* Build configuration list for PBXNativeTarget "PixelDodgeUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				716CB3982E1ACE1300574BB8 /* Debug */,
+				716CB3992E1ACE1300574BB8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 716CB35E2E1ACE1000574BB8 /* Project object */;
+}
