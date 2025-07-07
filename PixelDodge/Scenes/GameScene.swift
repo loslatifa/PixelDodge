@@ -4,13 +4,13 @@
 //
 //  Created by Kirsch Garrix on 2025/7/6.
 //
-// GameScene.swift 使用 GameManager 重构存档和状态管理
+// GameScene.swift 完整版（已集成模块化 Player/Enemy，使用 GameManager 管理状态）
 
 import SpriteKit
 import GameplayKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
-    var player: SKSpriteNode!
+    var player: Player!
     var gameOver = false
     var scoreLabel: SKLabelNode!
     var levelLabel: SKLabelNode!
@@ -29,14 +29,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         spawnInterval = max(0.5, 1.0 - Double(manager.currentLevel - 1) * 0.1)
         enemySpeed = max(3.0, 5.0 - Double(manager.currentLevel - 1) * 0.3)
 
-        player = SKSpriteNode(color: .green, size: CGSize(width: 32, height: 32))
-        player.position = CGPoint(x: frame.midX, y: frame.midY)
-        player.texture?.filteringMode = .nearest
-        player.physicsBody = SKPhysicsBody(rectangleOf: player.size)
-        player.physicsBody?.isDynamic = true
-        player.physicsBody?.categoryBitMask = 0x1 << 0
-        player.physicsBody?.contactTestBitMask = 0x1 << 1
-        player.physicsBody?.collisionBitMask = 0
+        player = Player(position: CGPoint(x: frame.midX, y: frame.midY))
         addChild(player)
 
         scoreLabel = SKLabelNode(fontNamed: "Menlo-Bold")
@@ -63,20 +56,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
 
     func spawnEnemy() {
-        let enemy = SKSpriteNode(color: .red, size: CGSize(width: 16, height: 16))
-        enemy.position = CGPoint(x: frame.maxX, y: CGFloat.random(in: 0...size.height))
-        enemy.texture?.filteringMode = .nearest
-        enemy.physicsBody = SKPhysicsBody(rectangleOf: enemy.size)
-        enemy.physicsBody?.isDynamic = true
-        enemy.physicsBody?.categoryBitMask = 0x1 << 1
-        enemy.physicsBody?.contactTestBitMask = 0x1 << 0
-        enemy.physicsBody?.collisionBitMask = 0
+        let enemy = Enemy(
+            position: CGPoint(x: frame.maxX, y: CGFloat.random(in: 0...size.height)),
+            moveDistance: size.width + 20,
+            moveDuration: enemySpeed,
+            onPassed: { [weak self] in self?.incrementScore() }
+        )
         addChild(enemy)
-
-        let move = SKAction.moveBy(x: -size.width - 20, y: 0, duration: enemySpeed)
-        let increment = SKAction.run { [weak self] in self?.incrementScore() }
-        let remove = SKAction.removeFromParent()
-        enemy.run(SKAction.sequence([move, increment, remove]))
     }
 
     func incrementScore() {
