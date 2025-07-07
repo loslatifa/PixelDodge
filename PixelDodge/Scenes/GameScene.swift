@@ -4,7 +4,7 @@
 //
 //  Created by Kirsch Garrix on 2025/7/6.
 //
-// GameScene.swift 最终版（支持存档功能）
+// GameScene.swift 使用 GameManager 重构存档和状态管理
 
 import SpriteKit
 import GameplayKit
@@ -14,8 +14,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var gameOver = false
     var scoreLabel: SKLabelNode!
     var levelLabel: SKLabelNode!
-    var score = 0
-    var level = 1
     var spawnInterval: Double = 1.0
     var enemySpeed: Double = 5.0
     let scoreToPass = 20
@@ -25,8 +23,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         physicsWorld.contactDelegate = self
         physicsWorld.gravity = .zero
 
-        spawnInterval = max(0.5, 1.0 - Double(level - 1) * 0.1)
-        enemySpeed = max(3.0, 5.0 - Double(level - 1) * 0.3)
+        let manager = GameManager.shared
+        manager.loadGame()
+
+        spawnInterval = max(0.5, 1.0 - Double(manager.currentLevel - 1) * 0.1)
+        enemySpeed = max(3.0, 5.0 - Double(manager.currentLevel - 1) * 0.3)
 
         player = SKSpriteNode(color: .green, size: CGSize(width: 32, height: 32))
         player.position = CGPoint(x: frame.midX, y: frame.midY)
@@ -44,7 +45,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreLabel.horizontalAlignmentMode = .left
         scoreLabel.verticalAlignmentMode = .top
         scoreLabel.position = CGPoint(x: 20, y: size.height - 20)
-        scoreLabel.text = "Score: \(score)"
+        scoreLabel.text = "Score: \(manager.currentScore)"
         addChild(scoreLabel)
 
         levelLabel = SKLabelNode(fontNamed: "Menlo-Bold")
@@ -53,7 +54,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         levelLabel.horizontalAlignmentMode = .right
         levelLabel.verticalAlignmentMode = .top
         levelLabel.position = CGPoint(x: size.width - 20, y: size.height - 20)
-        levelLabel.text = "Level: \(level)"
+        levelLabel.text = "Level: \(manager.currentLevel)"
         addChild(levelLabel)
 
         let spawn = SKAction.run { [weak self] in self?.spawnEnemy() }
@@ -80,24 +81,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     func incrementScore() {
         guard !gameOver else { return }
-        score += 1
-        scoreLabel.text = "Score: \(score)"
-        if score >= scoreToPass {
+        let manager = GameManager.shared
+        manager.currentScore += 1
+        scoreLabel.text = "Score: \(manager.currentScore)"
+        if manager.currentScore >= scoreToPass {
             proceedToNextLevel()
         }
     }
 
     func proceedToNextLevel() {
-        UserDefaults.standard.set(level + 1, forKey: "UnlockedLevel")
-        UserDefaults.standard.set(0, forKey: "SavedScore")
-        UserDefaults.standard.set(level + 1, forKey: "SavedLevel")
+        let manager = GameManager.shared
+        manager.currentLevel += 1
+        manager.currentScore = 0
+        manager.unlockNextLevel()
+        manager.saveGame()
+
         let nextLevelScene = GameScene(size: self.size)
-        nextLevelScene.level = self.level + 1
         nextLevelScene.scaleMode = .resizeFill
-        nextLevelScene.spawnInterval = max(0.3, self.spawnInterval - 0.1)
-        nextLevelScene.enemySpeed = max(2.0, self.enemySpeed - 0.3)
         let transition = SKTransition.flipHorizontal(withDuration: 1.0)
-        self.view?.presentScene(nextLevelScene, transition: transition)
+        view?.presentScene(nextLevelScene, transition: transition)
     }
 
     override func keyDown(with event: NSEvent) {
@@ -117,15 +119,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         gameOver = true
         removeAction(forKey: "spawnEnemies")
 
-        // 存档当前进度
-        UserDefaults.standard.set(level, forKey: "SavedLevel")
-        UserDefaults.standard.set(score, forKey: "SavedScore")
-
-        // 更新最高分
-        let previousHighScore = UserDefaults.standard.integer(forKey: "HighScore")
-        if score > previousHighScore {
-            UserDefaults.standard.set(score, forKey: "HighScore")
-        }
+        let manager = GameManager.shared
+        manager.updateHighScoreIfNeeded()
+        manager.saveGame()
 
         let gameOverLabel = SKLabelNode(text: "Game Over")
         gameOverLabel.fontName = "Menlo-Bold"
@@ -133,7 +129,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         gameOverLabel.position = CGPoint(x: frame.midX, y: frame.midY + 40)
         addChild(gameOverLabel)
 
-        let finalScoreLabel = SKLabelNode(text: "Score: \(score)")
+        let finalScoreLabel = SKLabelNode(text: "Score: \(manager.currentScore)")
         finalScoreLabel.fontName = "Menlo-Bold"
         finalScoreLabel.fontSize = 30
         finalScoreLabel.position = CGPoint(x: frame.midX, y: frame.midY)
@@ -160,17 +156,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let nodes = nodes(at: location)
             for node in nodes {
                 if node.name == "continue" {
-                    let savedLevel = UserDefaults.standard.integer(forKey: "SavedLevel")
-                    let savedScore = UserDefaults.standard.integer(forKey: "SavedScore")
-                    let gameScene = GameScene(size: self.size)
-                    gameScene.level = savedLevel > 0 ? savedLevel : 1
-                    gameScene.score = savedScore
-                    gameScene.scaleMode = .resizeFill
-                    view?.presentScene(gameScene, transition: SKTransition.fade(withDuration: 1.0))
+                    let nextScene = GameScene(size: self.size)
+                    nextScene.scaleMode = .resizeFill
+                    let transition = SKTransition.fade(withDuration: 1.0)
+                    view?.presentScene(nextScene, transition: transition)
                 } else if node.name == "quit" {
                     let startScene = StartScene(size: self.size)
                     startScene.scaleMode = .resizeFill
-                    view?.presentScene(startScene, transition: SKTransition.fade(withDuration: 1.0))
+                    let transition = SKTransition.fade(withDuration: 1.0)
+                    view?.presentScene(startScene, transition: transition)
                 }
             }
         }

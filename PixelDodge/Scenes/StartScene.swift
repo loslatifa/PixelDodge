@@ -7,7 +7,7 @@
 // StartScene.swift
 // PixelDodge
 
-// StartScene.swift 最终版（支持存档恢复与最高分显示）
+// StartScene.swift 使用 GameManager 重构进度和最高分管理
 
 import SpriteKit
 
@@ -42,7 +42,7 @@ class StartScene: SKScene {
         selectLevelLabel.name = "selectLevel"
         addChild(selectLevelLabel)
 
-        let highScore = UserDefaults.standard.integer(forKey: "HighScore")
+        let highScore = GameManager.shared.highScore
         let highScoreLabel = SKLabelNode(text: "最高分: \(highScore)")
         highScoreLabel.fontName = "Menlo-Bold"
         highScoreLabel.fontSize = 20
@@ -56,18 +56,18 @@ class StartScene: SKScene {
 
         for node in nodes {
             if node.name == "continue" {
-                let savedLevel = UserDefaults.standard.integer(forKey: "SavedLevel")
-                let savedScore = UserDefaults.standard.integer(forKey: "SavedScore")
+                let manager = GameManager.shared
+                manager.loadGame()
                 let gameScene = GameScene(size: self.size)
-                gameScene.level = savedLevel > 0 ? savedLevel : 1
-                gameScene.score = savedScore
                 gameScene.scaleMode = .resizeFill
                 let transition = SKTransition.fade(withDuration: 1.0)
                 view?.presentScene(gameScene, transition: transition)
             } else if node.name == "start" {
+                let manager = GameManager.shared
+                manager.currentLevel = 1
+                manager.currentScore = 0
+                manager.saveGame()
                 let gameScene = GameScene(size: self.size)
-                gameScene.level = 1
-                gameScene.score = 0
                 gameScene.scaleMode = .resizeFill
                 let transition = SKTransition.fade(withDuration: 1.0)
                 view?.presentScene(gameScene, transition: transition)
