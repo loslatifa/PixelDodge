@@ -17,20 +17,16 @@ class ViewController: NSViewController {
         super.viewDidLoad()
 
         if let view = self.skView {
-            // Load the SKScene from 'GameScene.sks'
-            if let scene = SKScene(fileNamed: "GameScene") {
-                // Set the scale mode to scale to fit the window
-                scene.scaleMode = .aspectFill
-                
-                // Present the scene
-                view.presentScene(scene)
-            }
+            // 直接使用 GameScene 类而非加载 .sks 文件
+            let scene = GameScene(size: view.bounds.size)
+            scene.scaleMode = .resizeFill
+
+            // Present the scene
+            view.presentScene(scene)
             
             view.ignoresSiblingOrder = true
-            
             view.showsFPS = true
             view.showsNodeCount = true
         }
     }
 }
-
