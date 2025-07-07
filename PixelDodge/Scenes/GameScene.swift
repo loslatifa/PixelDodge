@@ -11,6 +11,7 @@ import GameplayKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     var player: SKSpriteNode!
+    var gameOver = false
     
     override func didMove(to view: SKView) {
         backgroundColor = SKColor.black
@@ -27,19 +28,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.physicsBody?.collisionBitMask = 0
         addChild(player)
         
-        print("Frame: \(frame)")
-        print("Player position: \(player.position)")
-        print("Children count: \(children.count)")
-        if children.contains(player) {
-            print("Player successfully added to scene.")
-        } else {
-            print("Player NOT added to scene.")
-        }
-        
         let spawn = SKAction.run { [weak self] in self?.spawnEnemy() }
         let spawnForever = SKAction.repeatForever(SKAction.sequence([spawn, SKAction.wait(forDuration: 1.0)]))
-        run(spawnForever)
-        
+        run(spawnForever, withKey: "spawnEnemies")
     }
     
     func spawnEnemy() {
@@ -61,27 +52,48 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func keyDown(with event: NSEvent) {
+        guard !gameOver else { return }
         let moveAmount: CGFloat = 20
         switch event.keyCode {
-        case 0x7E:
-            player.position.y += moveAmount
-        case 0x7D:
-            player.position.y -= moveAmount
-        case 0x7B:
-            player.position.x -= moveAmount
-        case 0x7C:
-            player.position.x += moveAmount
-        default:
-            break
+        case 0x7E: player.position.y += moveAmount
+        case 0x7D: player.position.y -= moveAmount
+        case 0x7B: player.position.x -= moveAmount
+        case 0x7C: player.position.x += moveAmount
+        default: break
         }
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
+        if gameOver { return }
+        gameOver = true
+        removeAction(forKey: "spawnEnemies")
+        
         let gameOverLabel = SKLabelNode(text: "Game Over")
         gameOverLabel.fontName = "Menlo-Bold"
         gameOverLabel.fontSize = 40
-        gameOverLabel.position = CGPoint(x: frame.midX, y: frame.midY)
+        gameOverLabel.position = CGPoint(x: frame.midX, y: frame.midY + 20)
         addChild(gameOverLabel)
-        self.isPaused = true
+        
+        let restartLabel = SKLabelNode(text: "点击重新开始")
+        restartLabel.fontName = "Menlo-Bold"
+        restartLabel.fontSize = 25
+        restartLabel.position = CGPoint(x: frame.midX, y: frame.midY - 30)
+        restartLabel.name = "restart"
+        addChild(restartLabel)
+    }
+    
+    override func mouseDown(with event: NSEvent) {
+        if gameOver {
+            let location = event.location(in: self)
+            let nodes = nodes(at: location)
+            for node in nodes {
+                if node.name == "restart" {
+                    let newScene = GameScene(size: self.size)
+                    newScene.scaleMode = .resizeFill
+                    let transition = SKTransition.fade(withDuration: 1.0)
+                    view?.presentScene(newScene, transition: transition)
+                }
+            }
+        }
     }
 }

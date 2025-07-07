@@ -17,8 +17,7 @@ class ViewController: NSViewController {
         super.viewDidLoad()
 
         if let view = self.skView {
-            // 直接使用 GameScene 类而非加载 .sks 文件
-            let scene = GameScene(size: view.bounds.size)
+            let scene = StartScene(size: view.bounds.size)
             scene.scaleMode = .resizeFill
 
             // Present the scene
