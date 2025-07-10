@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		71EBC0EE2E1F9EAC004E8D51 /* README.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71EBC0ED2E1F9EA6004E8D51 /* README.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		716CB37E2E1ACE1300574BB8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,6 +31,7 @@
 		716CB3662E1ACE1000574BB8 /* PixelDodge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PixelDodge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		716CB37D2E1ACE1300574BB8 /* PixelDodgeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PixelDodgeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		716CB3872E1ACE1300574BB8 /* PixelDodgeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PixelDodgeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		71EBC0ED2E1F9EA6004E8D51 /* README.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = README.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -75,6 +80,7 @@
 		716CB35D2E1ACE1000574BB8 = {
 			isa = PBXGroup;
 			children = (
+				71EBC0ED2E1F9EA6004E8D51 /* README.swift */,
 				716CB3682E1ACE1000574BB8 /* PixelDodge */,
 				716CB3802E1ACE1300574BB8 /* PixelDodgeTests */,
 				716CB38A2E1ACE1300574BB8 /* PixelDodgeUITests */,
@@ -236,6 +242,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71EBC0EE2E1F9EAC004E8D51 /* README.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
