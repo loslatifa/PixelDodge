@@ -2,9 +2,7 @@
 //  GameScene.swift
 //  PixelDodge
 //
-//  Created by Kirsch Garrix on 2025/7/6.
-//
-// GameScene.swift - 修复 Game Over 菜单丢失，完整可运行
+//  Updated: Integrate player running animation with direction flip and maintain full game functionalities.
 
 import SpriteKit
 import GameplayKit
@@ -135,10 +133,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         guard !gameOver else { return }
         let moveAmount: CGFloat = 20
         switch event.keyCode {
-        case 0x7E: player.position.y += moveAmount
-        case 0x7D: player.position.y -= moveAmount
-        case 0x7B: player.position.x -= moveAmount
-        case 0x7C: player.position.x += moveAmount
+        case 0x7E: // Up
+            player.position.y += moveAmount
+        case 0x7D: // Down
+            player.position.y -= moveAmount
+        case 0x7B: // Left
+            player.position.x -= moveAmount
+            player.xScale = -1 // Flip to face left
+        case 0x7C: // Right
+            player.position.x += moveAmount
+            player.xScale = 1 // Face right
         default: break
         }
     }
