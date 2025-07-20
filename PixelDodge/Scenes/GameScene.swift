@@ -7,32 +7,41 @@
 import SpriteKit
 import GameplayKit
 
+//  GameScene 是主场景类，负责设置游戏界面，包括白色背景、一个蓝色方块作为玩家角色、右上角的分数标签，同时每秒生成一个红色敌人从右侧进入场景向左移动，玩家可点击屏幕控制蓝色方块平滑移动到点击位置。若红色敌人成功越过蓝色方块左侧则判为成功避让，分数加一；敌人和玩家之间没有碰撞逻辑，仅通过位置关系判断得分；场景初始化时构造角色与标签，启动定时器生成敌人；每帧检测所有敌人是否越过玩家位置并更新得分；该实现为基础闪避类游戏框架，适合进一步拓展碰撞检测、失败机制或难度递增等功能。
+
 class GameScene: SKScene, SKPhysicsContactDelegate {
     var player: Player!
     var gameOver = false
     var scoreLabel: SKLabelNode!
     var levelLabel: SKLabelNode!
     var healthLabel: SKLabelNode!
+    
+    // 敌人生成参数与玩家状态控制
     var spawnInterval: Double = 1.0
     var enemySpeed: Double = 5.0
     let scoreToPass = 20
     var playerHealth = 3
     var isPausedGame = false
 
+    //  didMove(to:) 是场景加载后被系统调用的初始化方法，在此设置黑色背景、关闭重力并启用碰撞委托，读取 GameManager 中保存的当前游戏进度与等级，根据等级动态调整敌人生成频率 spawnInterval 与速度 enemySpeed，创建玩家角色并置于屏幕中心，构建并布局三个 HUD 标签（得分、关卡、生命值）分别居左、中、右显示在顶部，随后启动敌人与金币的周期性生成逻辑 runEnemySpawn() 和 runCoinSpawn()，为游戏开始运行做完整准备。
     override func didMove(to view: SKView) {
         backgroundColor = .black
         physicsWorld.contactDelegate = self
         physicsWorld.gravity = .zero
-
+        
+        // 加载游戏数据（得分、等级等）
         let manager = GameManager.shared
         manager.loadGame()
-
+        
+        // 根据当前关卡调整敌人生成频率与速度（关卡越高越快）
         spawnInterval = max(0.5, 1.0 - Double(manager.currentLevel - 1) * 0.1)
         enemySpeed = max(3.0, 5.0 - Double(manager.currentLevel - 1) * 0.3)
 
+        // 初始化玩家角色并放置在屏幕中心
         player = Player(position: CGPoint(x: frame.midX, y: frame.midY))
         addChild(player)
-
+        
+        // 添加得分标签，固定在左上角
         scoreLabel = SKLabelNode(fontNamed: "Menlo-Bold")
         scoreLabel.fontSize = 20
         scoreLabel.fontColor = .white
@@ -41,6 +50,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreLabel.text = "Score: \(manager.currentScore)"
         addChild(scoreLabel)
 
+        // 添加等级标签，居中显示在顶部
         levelLabel = SKLabelNode(fontNamed: "Menlo-Bold")
         levelLabel.fontSize = 20
         levelLabel.fontColor = .white
@@ -49,6 +59,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         levelLabel.text = "Level: \(manager.currentLevel)"
         addChild(levelLabel)
 
+        // 添加生命值标签，右上角显示心形和剩余血量
         healthLabel = SKLabelNode(fontNamed: "Menlo-Bold")
         healthLabel.fontSize = 20
         healthLabel.fontColor = .white
@@ -56,7 +67,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         healthLabel.position = CGPoint(x: size.width - 20, y: size.height - 30)
         healthLabel.text = "❤️ x \(playerHealth)"
         addChild(healthLabel)
-
+        
+        // 启动敌人和金币的生成机制
         runEnemySpawn()
         runCoinSpawn()
     }

@@ -11,6 +11,7 @@
 
 import SpriteKit
 
+//开始场景
 class StartScene: SKScene {
     override func didMove(to view: SKView) {
         backgroundColor = .black
