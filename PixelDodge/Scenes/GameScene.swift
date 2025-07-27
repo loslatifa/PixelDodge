@@ -22,6 +22,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let scoreToPass = 20
     var playerHealth = 3
     var isPausedGame = false
+    var enemyPassCount = 0
 
     //  didMove(to:) 是场景加载后被系统调用的初始化方法，在此设置黑色背景、关闭重力并启用碰撞委托，读取 GameManager 中保存的当前游戏进度与等级，根据等级动态调整敌人生成频率 spawnInterval 与速度 enemySpeed，创建玩家角色并置于屏幕中心，构建并布局三个 HUD 标签（得分、关卡、生命值）分别居左、中、右显示在顶部，随后启动敌人与金币的周期性生成逻辑 runEnemySpawn() 和 runCoinSpawn()，为游戏开始运行做完整准备。
     override func didMove(to view: SKView) {
@@ -112,11 +113,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     func incrementScore() {
         guard !gameOver else { return }
-        let manager = GameManager.shared
-        manager.currentScore += 1
-        scoreLabel.text = "Score: \(manager.currentScore)"
-        if manager.currentScore >= scoreToPass {
-            proceedToNextLevel()
+        enemyPassCount += 1
+        if enemyPassCount % 2 == 0 {
+            let manager = GameManager.shared
+            manager.currentScore += 1
+            scoreLabel.text = "Score: \(manager.currentScore)"
+
+            if manager.currentScore >= scoreToPass {
+                proceedToNextLevel()
+            }
         }
     }
 
