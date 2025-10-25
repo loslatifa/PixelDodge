@@ -19,7 +19,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // 敌人生成参数与玩家状态控制
     var spawnInterval: Double = 1.0
     var enemySpeed: Double = 5.0
-    let scoreToPass = 20
+    let scoreToPass = 50
     var playerHealth = 3
     var isPausedGame = false
     var enemyPassCount = 0
