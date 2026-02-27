@@ -15,6 +15,11 @@ class LevelSelectScene: SKScene {
     let contentNode = SKNode()
     var lastTouchPosition: CGPoint?
     var unlockedLevel: Int = 1
+    let itemsPerRow = 4
+    let paddingX: CGFloat = 40
+    let rowSpacing: CGFloat = 60
+    var startY: CGFloat = 0
+    var statsLabel: SKLabelNode!
 
     override func didMove(to view: SKView) {
         backgroundColor = .black
@@ -28,17 +33,21 @@ class LevelSelectScene: SKScene {
         titleLabel.position = CGPoint(x: frame.midX, y: frame.maxY - 80)
         contentNode.addChild(titleLabel)
 
-        let itemsPerRow = 4
-        let paddingX: CGFloat = 40
+        statsLabel = SKLabelNode(text: "最高分: \(GameManager.shared.highScore)   最佳阶段: \(GameManager.shared.bestPhase)   累计金币: \(GameManager.shared.totalCoins)")
+        statsLabel.fontName = "Menlo"
+        statsLabel.fontSize = 16
+        statsLabel.fontColor = .lightGray
+        statsLabel.position = CGPoint(x: frame.midX, y: frame.maxY - 115)
+        contentNode.addChild(statsLabel)
+
         let spacingX = (frame.width - paddingX * 2) / CGFloat(itemsPerRow - 1)
-        let startY = frame.maxY - 150
-        let deltaY: CGFloat = 50
+        startY = frame.maxY - 180
 
         for i in 0..<unlockedLevel {
             let row = i / itemsPerRow
             let col = i % itemsPerRow
             let x = paddingX + CGFloat(col) * spacingX
-            let y = startY - CGFloat(row) * deltaY
+            let y = startY - CGFloat(row) * rowSpacing
 
             let levelLabel = SKLabelNode(text: "关卡 \(i + 1)")
             levelLabel.fontName = "Menlo-Bold"
@@ -61,6 +70,13 @@ class LevelSelectScene: SKScene {
         clearSaveLabel.position = CGPoint(x: frame.midX, y: 40)
         clearSaveLabel.name = "clearSave"
         addChild(clearSaveLabel)
+
+        let hintLabel = SKLabelNode(text: "滚轮或拖动可滚动页面")
+        hintLabel.fontName = "Menlo"
+        hintLabel.fontSize = 14
+        hintLabel.fontColor = .darkGray
+        hintLabel.position = CGPoint(x: frame.midX, y: 115)
+        addChild(hintLabel)
     }
 
     // 支持触控板和鼠标滚轮滑动滚动
@@ -70,10 +86,11 @@ class LevelSelectScene: SKScene {
     }
 
     func adjustContentPosition(by delta: CGFloat) {
-        let contentHeight = CGFloat((unlockedLevel / 4 + 1)) * 50 + 200
+        let rowCount = max((unlockedLevel + itemsPerRow - 1) / itemsPerRow, 1)
+        let contentHeight = 220 + CGFloat(rowCount - 1) * rowSpacing + 80
         let newY = contentNode.position.y + delta
         let maxOffset: CGFloat = 0
-        let minOffset = -max(contentHeight - size.height, 0)
+        let minOffset = -max(contentHeight - size.height + 140, 0)
         contentNode.position.y = min(max(newY, minOffset), maxOffset)
     }
 
@@ -87,8 +104,8 @@ class LevelSelectScene: SKScene {
                 if nodeName.starts(with: "level") {
                     let levelNumber = Int(nodeName.replacingOccurrences(of: "level", with: "")) ?? 1
                     let manager = GameManager.shared
+                    manager.resetRunState()
                     manager.currentLevel = levelNumber
-                    manager.currentScore = 0
                     manager.saveGame()
                     let gameScene = GameScene(size: self.size)
                     gameScene.scaleMode = .resizeFill // 全屏放大自适应
@@ -120,5 +137,9 @@ class LevelSelectScene: SKScene {
 
     override func mouseUp(with event: NSEvent) {
         lastTouchPosition = nil
+    }
+
+    override func update(_ currentTime: TimeInterval) {
+        statsLabel?.text = "最高分: \(GameManager.shared.highScore)   最佳阶段: \(GameManager.shared.bestPhase)   累计金币: \(GameManager.shared.totalCoins)"
     }
 }

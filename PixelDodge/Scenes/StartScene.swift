@@ -13,8 +13,10 @@ import SpriteKit
 
 //开始场景
 class StartScene: SKScene {
+    var statsLabel: SKLabelNode!
     override func didMove(to view: SKView) {
         backgroundColor = .black
+        GameManager.shared.loadGame()
 
         let titleLabel = SKLabelNode(text: "Pixel Dodge")
         titleLabel.fontName = "Menlo-Bold"
@@ -43,12 +45,13 @@ class StartScene: SKScene {
         selectLevelLabel.name = "selectLevel"
         addChild(selectLevelLabel)
 
-        let highScore = GameManager.shared.highScore
-        let highScoreLabel = SKLabelNode(text: "最高分: \(highScore)")
-        highScoreLabel.fontName = "Menlo-Bold"
-        highScoreLabel.fontSize = 20
-        highScoreLabel.position = CGPoint(x: frame.midX, y: frame.midY - 150)
-        addChild(highScoreLabel)
+        statsLabel = SKLabelNode(text: "最高分: \(GameManager.shared.highScore)   最佳阶段: \(GameManager.shared.bestPhase)   累计金币: \(GameManager.shared.totalCoins)")
+        statsLabel.fontName = "Menlo"
+        statsLabel.fontSize = 18
+        statsLabel.fontColor = .lightGray
+        statsLabel.position = CGPoint(x: frame.midX, y: frame.midY - 145)
+        statsLabel.name = "statsLabel"
+        addChild(statsLabel)
     }
 
     override func mouseDown(with event: NSEvent) {
@@ -65,8 +68,8 @@ class StartScene: SKScene {
                 view?.presentScene(gameScene, transition: transition)
             } else if node.name == "start" {
                 let manager = GameManager.shared
+                manager.resetRunState()
                 manager.currentLevel = 1
-                manager.currentScore = 0
                 manager.saveGame()
                 let gameScene = GameScene(size: self.size)
                 gameScene.scaleMode = .resizeFill
@@ -79,5 +82,9 @@ class StartScene: SKScene {
                 view?.presentScene(levelSelectScene, transition: transition)
             }
         }
+    }
+
+    override func update(_ currentTime: TimeInterval) {
+        statsLabel?.text = "最高分: \(GameManager.shared.highScore)   最佳阶段: \(GameManager.shared.bestPhase)   累计金币: \(GameManager.shared.totalCoins)"
     }
 }
